@@ -39,7 +39,10 @@ app.post('/api/register', (req, res) => storeController.registerUser(req, res));
 app.post('/api/login', (req, res) => storeController.loginUser(req, res));
 app.get('/logout', (req, res) => storeController.logoutUser(req, res));
 app.get('/', (req, res) => storeController.renderStore(req, res));
-
+// Rutas de Gestión de Usuarios para el Administrador
+app.get('/admin/users', (req, res) => storeController.renderAdminUsers(req, res));
+app.post('/admin/users/update-role', (req, res) => storeController.updateUserRole(req, res));
+app.post('/admin/users/delete/:id', (req, res) => storeController.deleteUser(req, res));
 const PORT = process.env.PORT || 3000;
 
 sequelize.sync({ alter: true }).then(async () => {
